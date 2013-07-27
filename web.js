@@ -5,10 +5,21 @@ app.use(express.logger());
 //my new code
 var fs=require("fs");
 var fname="index.html";
+var str="*";
+
+fs.readFile(fname,'utf8',function(err,data)
+{
+    if(err){
+	str="error";
+}
+    else{
+	str=data;
+}
+});
 //
 
 app.get('/', function(request, response) {
-  response.send(fs.readFile(fname,'utf8'));
+  response.send(str);
 });
 
 var port = process.env.PORT || 5000;
